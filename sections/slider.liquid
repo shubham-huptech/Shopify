@@ -1,0 +1,125 @@
+{{ 'slider.css' | asset_url | stylesheet_tag }}
+
+{{ 'slider-responsive.css' | asset_url |stylesheet_tag }}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <div class="up-flex-container">
+        <div class="flex-container">
+            <div class="fixed-box">
+                <div class="flex-child">
+                  {% if section.settings.title != blank %}
+                    <h1 class= "title">{{ section.settings.title | escape }}</h1>
+                  {% endif %}
+                  {% if section.settings.para != blank %}
+                    {{ section.settings.para }}
+                  {% endif %}
+                  <div>
+                    <p class="more">Swipe to see more</p>
+                    <div class="icon">
+                        <button id="prev" class="first btn"><img src="https://cdn-icons-png.flaticon.com/512/109/109618.png" /></button>
+                        <button id="next" class="second btn"><img  src="https://cdn-icons-png.flaticon.com/512/109/109617.png" /></button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="flex-scroll owl-carousel owl-theme" id="slider">
+              {% for block in section.blocks %}
+                <div class="box">
+                    {{ block.settings.pick-image | image_url: width: 2048 | image_tag }}
+                    <button class="explore">{{ section.settings.button-text }}</button>
+                </div> 
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+<script> 
+$("#slider").owlCarousel({
+  loop:true,
+  margin:10,
+  nav: true,
+  navText: ["<img src='https://cdn-icons-png.flaticon.com/512/109/109618.png'>","<img src='https://cdn-icons-png.flaticon.com/512/109/109617.png'>"],
+  responsive: {
+    0: {
+      items: 1,
+    },
+    450: {
+      items: 1.5,
+    },
+    550: {
+      items: 1
+    },
+    800: {
+      items: 1.5
+    },
+    900: {
+      items: 2,
+    },
+    1100: {
+      items: 3,
+    },
+    1400: {
+      items: 4,
+    },
+  },
+});
+</script>
+
+
+
+{% schema %}
+  {
+    "name": "Slider",
+    "settings": [
+      {
+        "type" : "text",
+        "id" : "title",
+        "label" : "Title",
+        "default" : "Design"
+      },
+      {
+        "type" : "richtext" ,
+        "id" : "para",
+        "label" : "Details",
+        "default" : "<p> Hello Para </p>"
+      },
+      {
+          "type" : "text",
+          "id" : "button-text",
+          "label" : "Button",
+          "default" : "Button Label"
+      }
+    ],
+    "blocks" : [
+      {
+        "type" : "image",
+        "name" : "Image",
+        "settings" : [
+          {
+            "type" : "image_picker",
+            "id" : "pick-image",
+            "label" : "Pick Image"
+          }
+        ]
+      }
+    ],
+    "presets" : [
+      {
+        "name" : "Slider"
+      }
+    ]
+  }
+{% endschema %}
+

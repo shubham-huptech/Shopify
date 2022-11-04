@@ -1,0 +1,150 @@
+{{ 'explore-products.css' | asset_url | stylesheet_tag }}
+{{ 'explore-products-responsive.css' | asset_url | stylesheet_tag }}
+
+<script src="https://kit.fontawesome.com/f525e683bf.js" crossorigin="anonymous"></script>
+
+
+<section class="explore-products">
+  
+    <div class="explore-products__text">
+      {% if section.settings.title != blank %}
+        <h1 class= "heading">{{ section.settings.title | escape }}</h1>
+      {% endif %}
+    </div>
+
+  <div class= "explore-category"> 
+    <div class="box-container">
+            <div class="left-box">
+                <div class="search-icon-center">
+                  <div class= "search-icon">
+                    <input type="text" placeholder=" Search">
+                  </div>
+                </div>
+                <input type="checkbox" id="showhide">
+                <label for="showhide" class="checkbtnshowhide">
+                    <i class=" fas fa-bars "> </i>
+                </label>
+            <div class='li-style'>
+                  {% for block in section.blocks %}
+                     {% case block.type %}
+                       {% when 'text' %}
+                          <li><a href="#">{{ block.settings.title }}</a></li>
+                       {% endcase %}
+                  {% endfor %}
+            </div>
+              <div id="hidephone">
+          {%- for block in section.blocks -%}
+          {% case block.type %}
+            {%- when 'button' -%}
+              {%- if block.settings.button_label != blank -%}
+                <a{% if block.settings.button_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.button_link }}"{% endif %} class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}" {{ block.shopify_attributes }}>
+                  {{ block.settings.button_label | escape }}
+                <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i>
+                </a>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+              </div>
+            </div>
+            <div class="right-box">
+                <div class="grid-container">
+                  {% for block in section.blocks %}
+                        {% case block.type %}
+                        {% when 'heading' %}
+                    <div class="items">
+                        {{ block.settings.image | image_url: width: 2048 | image_tag }}
+                        <button class="explore"> {{ block.settings.image-text }} </button>
+                    </div>
+                        {% endcase %}
+                  {% endfor %}
+                </div>
+            </div>
+      </div>
+
+          <div id="showphone">
+          {%- for block in section.blocks -%}
+          {% case block.type %}
+            {%- when 'button' -%}
+              {%- if block.settings.button_label != blank -%}
+                <a{% if block.settings.button_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.button_link }}"{% endif %} class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}" {{ block.shopify_attributes }}>
+                  {{ block.settings.button_label | escape }}
+                <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i>
+                </a>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+              </div>
+        
+  </div>
+
+  <script src="https://kit.fontawesome.com/f525e683bf.js" crossorigin="anonymous"></script>
+  
+</section>
+
+{% schema %}
+  {
+    "name": "Explore",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Explore"
+      }
+    ],
+    "blocks" : [
+    {
+      "type": "heading",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image-text",
+          "label": "Image Text"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Description",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Heading",
+          "label": "Title"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "t:sections.image-with-text.blocks.button.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Button label",
+          "label": "t:sections.image-with-text.blocks.button.settings.button_label.label",
+          "info": "t:sections.image-with-text.blocks.button.settings.button_label.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.image-with-text.blocks.button.settings.button_link.label"
+        }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Explore Products"
+      }
+    ]
+  }
+{% endschema %}

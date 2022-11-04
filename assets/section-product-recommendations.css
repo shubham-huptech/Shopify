@@ -1,0 +1,18 @@
+.product-recommendations {
+  display: block;
+}
+
+.product-recommendations__heading {
+  margin: 0 0 3rem;
+  color: #4F8CB1;
+  opacity: 0.7;
+  text-align: center;
+}
+
+.product-recommendations .divCart {
+      display : none;
+  }
+  
+.product-recommendations .card--media:hover .card-information {
+      all: unset;
+  }

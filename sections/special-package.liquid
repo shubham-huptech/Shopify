@@ -1,0 +1,299 @@
+
+<script src="https://kit.fontawesome.com/f525e683bf.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+{{ 'special-package.css' | asset_url | stylesheet_tag }}
+{{ 'special-package-responsive.css' | asset_url | stylesheet_tag }}
+
+
+
+<section class="special-package page-width">
+
+  <div class="special-package-title">
+      {% if section.settings.title != blank %}
+        <h1 class= "heading" style="margin-top: 0px">{{ section.settings.title | escape }}</h1>
+      {% endif %}
+  </div>
+
+  <div class="box-container">
+            <div class="left-box">
+               {% for block in section.blocks %}
+                    {% case block.type %}
+                    {% when 'text' %}
+                      {%- if block.settings.image != blank -%}
+                      <div class="img-container">
+                        {{ block.settings.image | image_url: width: 2048 | image_tag }}
+                        <button class="expand"> <i class="fa-solid fa-maximize fa-2x"></i>  </button>
+                      </div>
+                      {%- endif -%}
+                <div class="larkin-wood hideontab">
+                      {%- if block.settings.title != blank -%}
+                    <h2 class="title">{{ block.settings.title }}</h2>
+                        {% endif %}
+                    <div class="star-flex">
+                      {%- if block.settings.star-image != blank -%}
+                        <div class="star-img">
+                            {{ block.settings.star-image | image_url: width: 2048 | image_tag }}
+                        </div>
+                        {% endif %}
+                        <div class="centerBtn">
+                          {%- when 'button' -%}
+                              {%- if block.settings.button_label != blank -%}
+                                <a{% if block.settings.button_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.button_link }}"{% endif %} class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}" {{ block.shopify_attributes }}>
+                                  {{ block.settings.button_label | escape }} 
+                                
+                                <i class="fa-solid fa-cart-shopping fa-lg" style="margin-left: 10px"></i>
+                                </a>
+                           
+                              {% endif %}
+                        </div>
+                    </div>
+                    <p class="price"> $729 </p>
+                </div>
+                {% endcase %}
+                {% endfor %} 
+        </div>
+    
+      <div class="right-box">
+         {% for block in section.blocks %}
+                    {% case block.type %}
+                    {% when 'text' %}
+                       <div class="larkin-wood hideonphone hideondesktop">
+                      {%- if block.settings.title != blank -%}
+                    <h2 class="title">{{ block.settings.title }}</h2>
+                        {% endif %}
+                    <div class="star-flex">
+                      {%- if block.settings.star-image != blank -%}
+                        <div class="star-img">
+                            {{ block.settings.star-image | image_url: width: 2048 | image_tag }}
+                        </div>
+                        {% endif %}
+                        <div class="centerBtn">
+                          {%- when 'button' -%}
+                              {%- if block.settings.button_label != blank -%}
+                                <a{% if block.settings.button_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.button_link }}"{% endif %} class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}" {{ block.shopify_attributes }}>
+                                  {{ block.settings.button_label | escape }}
+                                </a>
+                              {% endif %}
+                        </div>
+                    </div>
+                    <p class="price"> $729 </p>
+                </div>
+          {% endcase %}
+          {% endfor %} 
+        {% for block in section.blocks %}
+          {% case block.type %}
+                    {% when 'heading' %}
+                      <div class="data">
+                      <h4 class="title">
+                        {{ block.settings.head }}
+                      </h4>
+                      {{ block.settings.des }}
+                      <a href="" class="see-more">See More </a>
+                  </div>
+          {% endcase %}
+        {% endfor %}
+        
+        {% for block in section.blocks %}
+          {% case block.type %}
+             {% when 'grid' %}
+             <div class="special-grid hideonphone hideontab">
+                    <div class="grid-item grid-img">
+                          {{ block.settings.grid-image | image_url: width: 2048 | image_tag }}                    
+                    </div>
+
+                    <div class="grid-item des">
+                        <div class="grid-flex">
+                            <h1 class="grid-title">{{ block.settings.grid-title }}</h1>
+                            <p class="grid-price">${{ block.settings.grid-price }}</p>
+                        </div>
+                        {{ block.settings.grid-star-image | image_url: width: 2048 | image_tag }}
+                        <br>
+                        <a href="" class="grid-details">{{ block.settings.grid-details }}</a>
+                        <div class="search-container">
+                            <button class="expand"><a href="#"><i class="fa-solid fa-magnifying-glass-plus fa-lg" style="color:white"></i></a></button>
+                        </div>
+                    </div>
+                </div>
+              {% endcase %}
+              {% endfor %}
+            </div>
+        </div>
+        {% comment %} TABLET PURPOSE START {% endcomment %}
+        <div class="flex-scroll owl-carousel owl-theme" id="grid-slider">
+        {% for block in section.blocks %}
+          {% case block.type %}
+             {% when 'grid' %}
+             <div class="special-grid hideonphone hideondesktop">
+                    <div class="grid-item grid-img">
+                          {{ block.settings.grid-image | image_url: width: 2048 | image_tag }}                    
+                    </div>
+
+                    <div class="grid-item des">
+                        <div class="grid-flex">
+                            <h1 class="grid-title">{{ block.settings.grid-title }}</h1>
+                            <p class="grid-price">${{ block.settings.grid-price }}</p>
+                        </div>
+                        {{ block.settings.grid-star-image | image_url: width: 2048 | image_tag }}
+                        <br>
+                        <a href="" class="grid-details">{{ block.settings.grid-details }}</a>
+                        <div class="search-container">
+                            <button class="expand"><a href="#"><i class="fa-solid fa-magnifying-glass-plus fa-lg" style="color:white"></i></a></button>
+                        </div>
+                    </div>
+                </div>
+              {% endcase %}
+          {% endfor %}
+        </div>
+        {% comment %} TABLET PURPOSE END {% endcomment %}
+      </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script> 
+$("#grid-slider").owlCarousel({
+  loop:true,
+  margin:10,
+  dots: false,
+  responsive: {
+    0: { 
+      items: 1,
+    }
+  }
+});
+</script>
+
+
+{% schema %}
+  {
+    "name": "Special Package",
+    "class" : "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Special Package"
+      }
+    ],
+    "blocks" : [
+    {
+      "type": "text",
+      "name": "Content",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Head Title",
+          "default": "Write Your Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "star-image",
+          "label": "Rating"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "Price"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Cart Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text", 
+          "id": "button_label",
+          "default": "Button label",
+          "label": "Cart Button",
+          "info": "t:sections.image-with-text.blocks.button.settings.button_label.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Url"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "head",
+          "label": "Head"
+        },
+        {
+          "type": "richtext",
+          "id": "des",
+          "label": "Description"
+        }
+      ]
+    },
+      {
+      "type": "grid",
+      "name": "Grid-Content",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "grid-image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "grid-title",
+          "label": "Grid Title",
+          "default": "Write Your Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid-star-image",
+          "label": "Rating"
+        },
+        {
+          "type": "text",
+          "id": "grid-price",
+          "label": "Price",
+          "default": "Price"
+        },
+        {
+          "type": "text",
+          "id": "grid-details",
+          "label": "Destails",
+          "default": "See More Data"
+        }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Special Package"
+      }
+    ]
+  }
+{% endschema %}

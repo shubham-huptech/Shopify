@@ -1,0 +1,98 @@
+
+{{ 'product-looping.css' | asset_url | stylesheet_tag }}
+
+<form class="product-cart">
+  <h1> {{ product.title }} </h1>
+   {{ product.description }} 
+  
+  {% for image in product.images %} 
+    <img src="{{ image | img_url : 'medium' }}" />
+  {% endfor %}
+  
+  <p class="new-price"> {{ product.price | money_without_trailing_zeros }} </p>
+
+  <div class="quant">
+    <span type="button" class="minus"><i class="fa-solid fa-minus"></i></span>
+    <input class="number" type="text" value="1"> 
+    <span class="plus"><i class="fa-solid fa-plus"></i></span>
+  </div>
+  
+  <button type= button class="addToCart">Add To Cart</button>
+
+  {%- for option in product.options_with_values -%}
+  <select name="option" class="single-product-options variant_options">
+            {%- assign optionindex = 'option' | append: forloop.index -%}
+            {% for value in option.values %}
+            {% for variant in product.variants %}
+              {% if variant[optionindex] == value %}
+              <option class="variant-id"  data-id={{ variant.id }} value="{{ value }}">{{ value }}</option>
+            {% break %}
+                {% else %}
+              {% endif %}
+            {% endfor %}
+            {% endfor %}
+          </select>
+   {% endfor %}
+
+</form>
+
+<script>
+  
+  $(document).ready(function() {
+    console.log($('.variant-id').attr('data-id'))
+  let val = $(".number").val();
+    
+  // plus minus functionality
+  $(".plus").click(function(){
+    val++;
+    if(val >= 1){
+      $(".number").attr("value", val);
+    }
+  });
+  $(".minus").click(function(){
+    val--;
+    if(val >= 1){
+      $(".number").attr("value", val);
+    }
+  });
+  
+  var variant_Id;
+  $('.variant_options').on('change',function() {
+    variant_Id  = $(this).children("option:selected").attr('data-id');
+    console.log(variant_Id)
+  })
+  // addToCart Click Event
+  $(".addToCart").on("click", function () {
+    if(!variant_Id) {
+      let defaultId = ($('.variant-id').attr('data-id'))
+      let num = $('.number').val()
+      addToCart(defaultId,num)
+    } else {
+      let num = $('.number').val()
+      addToCart(variant_Id,num)
+    }
+  })
+
+  // addToCart Function
+  function addToCart(variant_id,qty) {
+    
+    $.ajax({
+      url: "/cart/add.js",
+      type: "POST",
+      data: {
+        "id": variant_id,
+        "quantity": qty
+      },
+      dataType: 'json',
+      success: function(response) {
+        console.log(response)
+        console.log(response.id)
+        console.log(response.product_id)
+      },
+      error: function(error) {
+        console.log(error)
+      }
+    })
+  }
+});
+</script>

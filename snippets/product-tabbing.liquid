@@ -1,0 +1,145 @@
+{{ 'product-tabbing.css' | asset_url | stylesheet_tag }}
+ 
+<div class="container">
+
+	<ul class="tabs">
+		<li class="tab-link active" data-tab="tab-1"> Description </li>
+		<li class="tab-link" data-tab="tab-2"> Reviews </li>
+	</ul>
+
+	
+    {%- if product.description != blank -%}
+    <div id="tab-1" class="product__description rte quick-add-hidden tab-content active" >
+     {{ product.description }}
+
+      
+  {% if product.metafields.custom != blank %}
+  <table class="product-des-table">
+  <tbody>
+      <tr>
+        <td class="title">Brand</td>
+        <td class="des">
+      {% if product.metafields.custom.wooden_type != blank %}
+           {{ product.metafields.custom.wooden_type }}
+        {% else %}
+          -
+      {% endif %}
+      </td>
+      </tr>
+      <tr>
+        <td class="title">Shape</td>
+        <td class="des">
+      {% if product.metafields.custom.wooden_shape != blank %}
+           {{ product.metafields.custom.wooden_shape }}
+        {% else %}
+          -
+      {% endif %}
+      </td>
+      </tr>
+      <tr>
+        <td class="title">Desk design</td>
+        <td class="des">
+      {% if product.metafields.custom.wooden_desk_design != blank %}
+           {{ product.metafields.custom.wooden_desk_design }}
+        {% else %}
+          -
+      {% endif %}
+      </td>
+      </tr>
+      <tr>
+        <td class="title">Product Dimensions</td>
+        <td class="des">
+      {% if product.metafields.custom.wooden_product_dimensions != blank %}
+           {{ product.metafields.custom.wooden_product_dimensions }}
+        {% else %}
+          -
+      {% endif %}
+      </td>
+      </tr>
+      <tr>
+        <td class="title">Colour</td>
+        <td class="des">
+      {% if product.metafields.custom.wooden_colour != blank %}
+           {{ product.metafields.custom.wooden_colour }}
+        {% else %}
+          -
+      {% endif %}
+      </td>
+      </tr>
+      <tr>
+        <td class="title">Style</td>
+        <td class="des">
+      {% if product.metafields.custom.wooden_style != blank %}
+           {{ product.metafields.custom.wooden_style }}
+        {% else %}
+          -
+      {% endif %}
+      </td>
+      </tr>
+    <tr>
+        <td class="title">Base Material</td>
+        <td class="des">
+      {% if product.metafields.custom.wooden_base_material != blank %}
+           {{ product.metafields.custom.wooden_base_material }}
+        {% else %}
+          -
+      {% endif %}
+      </tr>
+    <tr>
+        <td class="title">Finish Type</td>
+        <td class="des">
+        {% if product.metafields.custom.wooden_finish_type != blank %}
+             {{ product.metafields.custom.wooden_finish_type }}
+          {% else %}
+          -
+        {% endif %}
+      </tr>
+    <tr>
+        <td class="title">Special Feature</td>
+        <td class="des">
+        {% if product.metafields.custom.wooden_special_feature != blank %}
+             {{ product.metafields.custom.wooden_special_feature }}
+          {% else %}
+          -
+        {% endif %}
+      </tr>
+  </tbody>
+</table>
+      {% endif %}
+</div>
+{%- endif -%}
+     
+	<div id="tab-2" class="tab-content">
+      
+      <div><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></div>
+      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+
+    </div>
+  
+</div>
+<div class="product-button-div">
+<button class="product-button"> <i class="fa-solid fa-arrow-left-long fa-xl left-arrow"></i> <a class="furniture-link" href="/collections/furniture"> back to all Furnitures </a> </button>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script>
+  
+$(document).ready(function(){
+	
+	$('ul.tabs li').click(function() {
+      
+		let tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('active');
+		$('.tab-content').removeClass('active');
+
+        // li ma class add active
+		$(this).addClass('active');
+        // tab-content id ma class add active
+		$("#"+tab_id).addClass('active');
+	})
+  
+})
+
+</script>

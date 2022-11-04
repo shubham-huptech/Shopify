@@ -1,0 +1,108 @@
+#testimonials .owl-nav {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 2px solid;
+}
+
+#testimonials .owl-nav button.owl-prev{
+    border-radius: 50%;
+    margin: 10px !important;
+    padding: 12px !important;
+    cursor: pointer;
+    background: #E0EFF6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#testimonials .owl-nav button.owl-next{
+    border-radius: 50%;
+    margin: 10px !important;
+    padding: 12px !important;
+    cursor: pointer;
+    background: #F9D9DA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#testimonials .owl-nav img{
+  width: 20px;
+}
+
+.testimonials {
+  padding: 0 5rem;
+  color: #07484A;
+  text-align: center;
+}
+
+.testimonials .heading {
+  margin: 20px 0;
+  font-size: 30px;
+}
+
+.testimonials .subtext {
+    font-family: sans-serif;
+    font-size: 25px;
+    text-align: center;
+}
+
+.testimonials .text {
+    font-family: sans-serif;
+    font-size: 25px;
+    text-align: justify;
+    font-size: 1.2rem;
+    margin: 2rem;
+    flex: 1 1 auto;
+}
+
+.testimonials .text p {
+    margin: 0;
+}
+
+.testimonials .image_picker {
+  position: relative;
+}
+
+.testimonials .image_picker i {
+    color: #457b9d;;
+    position: absolute;
+    top: -40px;
+    left: -40px;
+}
+
+
+.testimonials .image_picker img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.container {
+    margin: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .content p {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.container .title {
+    margin: 0;
+    font-size: 2.5rem;
+
+.owl-carousel .owl-item img {
+  width : 250px;
+}
+
+
+
+
+
+
+
+

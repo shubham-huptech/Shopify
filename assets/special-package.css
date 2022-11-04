@@ -1,0 +1,223 @@
+.special-package {
+  color: #07484A;
+  padding: 0 5rem;
+}
+
+.special-package-title {
+  text-align: center;
+  color: #07484A;
+}
+
+.special-package .box-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* left box css */
+
+.special-package .box-container .left-box {
+    max-width: 48%;
+}
+
+.special-package .box-container .left-box .img-container {
+    position: relative;
+}
+
+.special-package .box-container .left-box .img-container img {
+    max-width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.special-package .box-container .left-box .img-container .icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    max-width: 100px;
+}
+
+.special-package .box-container .left-box .img-container .expand {
+    background-color: #07484A;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 30%;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.larkin-wood .title {
+    font-family: sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+.larkin-wood .star-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.larkin-wood .star-img img {
+    width: 150px;
+    height: 30px;
+}
+
+.larkin-wood .centerBtn {
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.larkin-wood a {
+    color: ##fdfbf8;
+    font-family: sans-serif;
+    font-weight: normal
+}
+
+
+.larkin-wood .price {
+    font-family: sans-serif;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #07484A;
+    font-size: 2rem;
+}
+
+/* right box css */
+
+.special-package .box-container .right-box {
+    max-width: 48%;
+}
+
+.special-package .box-container .right-box .title {
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.special-package .box-container .right-box .data p {
+    font-family: sans-serif;
+    font-weight: normal;
+    text-align: justify;
+}
+
+.special-package .box-container .right-box .see-more {
+    font-family: sans-serif;
+    font-weight: normal;
+    color: black;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/* GRID DESIGN */
+
+.special-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1rem;
+    margin: 15px 0;
+}
+
+.special-grid .grid-item {
+    border-radius: 10px;
+    padding: 1rem;
+    position: relative;
+    height:200px
+}
+
+.special-grid .grid-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: all 1s;
+}
+
+.special-grid .grid-img img:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.special-grid .des:hover {
+  background: #E0F6F1;
+}
+
+.special-grid .grid-item .grid-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grid-item .grid-flex .grid-title {
+    font-family: sans-serif;
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+.special-grid .grid-item .grid-flex .grid-new-title {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.special-grid .grid-item .grid-flex .grid-price {
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.special-grid .grid-flex + img {
+    width: 150px !important;
+    height: 30px;
+}
+
+.special-grid .grid-item .grid-item-star-img {
+    width: 35%;
+    margin: 0.5rem 0;
+}
+
+.special-grid .grid-item .grid-des {
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+.special-grid .grid-item .see-more {
+    color: #07484A;
+    margin: 0.5rem 0;
+    display: inline-block;
+}
+
+.special-grid .grid-item .grid-details {
+    display: inline-block;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: #07484A;
+    font-size: 20px;
+}
+
+
+.special-grid .grid-item .expand {
+    background-color: #07484A;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 30%;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.special-grid .grid-item .grid-details:hover {
+    text-decoration: underline;
+}

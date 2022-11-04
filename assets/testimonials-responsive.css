@@ -1,0 +1,17 @@
+/* Extra small devices (phones, 800px and down) */
+@media only screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+    .container .text {
+      padding: 15px 0;
+      text-align: justify;
+  }
+
+  .testimonials {
+    padding: 0 1rem;
+  }
+}

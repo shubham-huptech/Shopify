@@ -1,0 +1,147 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script src="https://kit.fontawesome.com/f525e683bf.js" crossorigin="anonymous"></script>
+ 
+{{ 'testimonials.css' | asset_url | stylesheet_tag }}
+{{ 'testimonials-responsive.css' | asset_url | stylesheet_tag }}
+
+<section class="testimonials">
+    <div class="testimonials__text">
+      {% if section.settings.title != blank %}
+        <h1 class= "heading">{{ section.settings.title | escape }}</h1>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="subtext">{{ section.settings.text }}</div>
+      {% endif %}
+    </div>
+
+    <div class="flex-scroll owl-carousel owl-theme" id="testimonials">
+    {% for block in section.blocks %}
+    {% case block.type %}
+    {% when 'Testimonial-Content' %}
+    <div class= "container"> 
+      <div class="image_picker">
+        {% comment %}
+          <img class="quote" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc6WKq_stWLUnnrn4I9FxjVCLJ7KpABb-1Xg&usqp=CAU" alt="">
+        {% endcomment %}
+        
+        {{ block.settings.image | image_url: width: 2048 | image_tag }}
+        <i class="fa-solid fa-quote-left fa-6x"></i>
+      </div>
+       
+      <div class="text">
+         {% if block.settings.content != blank %}
+        <div class="content">
+         {{ block.settings.content }}
+      </div>
+        {% endif %}
+         {% if block.settings.authorTitle != blank %}
+          <h2 class='title'> {{ block.settings.authorTitle }} </h2>
+           {% endif %}
+         {% if block.settings.authorSubtext != blank %}
+      <div class="content">
+          {{ block.settings.authorSubtext }}
+      </div>
+           {% endif %}
+      </div>
+  </div>
+    {% endcase %}
+    {% endfor %}
+    </div>
+    
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+<script>
+   
+$('#testimonials').owlCarousel({
+  loop:true,
+  margin:10,
+  dots: false,
+  nav: true,
+  navText: ["<img src='https://cdn-icons-png.flaticon.com/512/109/109618.png'>","<img src='https://cdn-icons-png.flaticon.com/512/109/109617.png'>"],
+  responsive: {
+    0: {
+      items: 1,
+    }
+  },
+});
+  
+</script>
+
+{% schema %}
+  {
+    "name": "Testimonials",
+    "class" : "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+      }
+    ],
+    "blocks" : [
+    {
+      "type": "Testimonial-Content",
+      "name": "Testimonial Content",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "default": "<p>Write Your Content.</p>",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "authorTitle",
+          "default": "Heading",
+          "label": "Author Title"
+        },
+        {
+          "type": "richtext",
+          "id": "authorSubtext",
+          "default": "<p>Write Your Sub-text</p>",
+          "label": "Author Position"
+        },
+        {
+          "type": "image_picker",
+          "id": "left-arrow",
+          "label": "Left Arrow"
+        },
+        {
+          "type": "image_picker",
+          "id": "right-arrow",
+          "label": "Right Arrow"
+        }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Testimonials"
+      }
+    ]
+  }
+{% endschema %}
