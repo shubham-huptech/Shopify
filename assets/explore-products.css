@@ -7,7 +7,7 @@
   .explore-category .box-container {
       display: flex;
       justify-content: space-around;
-      padding: 1rem 0;
+      padding: 3rem 0;
   }
 
   .explore-category .box-container .left-box .li-style {
